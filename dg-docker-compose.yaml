@@ -1,0 +1,11 @@
+version: '1'
+services:
+  postgres-server:
+    image: postgres:14.0
+    container_name: postgres-server
+    ports:
+      - 7777:5432
+    environment:
+      POSTGRES_USER: admin  
+      POSTGRES_PASSWORD: qwer
+      POSTGRES_DB: warehouse
