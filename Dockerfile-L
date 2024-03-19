@@ -1,0 +1,19 @@
+# 도커 이미지의 기반이 될 이미지를 선택합니다.
+FROM python:3.9
+
+# 작업 디렉토리를 설정합니다.
+WORKDIR /app
+
+# 필요한 의존성을 설치합니다.
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 소스 코드를 복사합니다.
+COPY ./consumers/__init__.py ./__init__.py
+COPY ./consumers/l_consumer.py ./l_consumer.py
+COPY ./consumers/secret.json ./secret.json
+COPY ./consumers/db.py ./db.py
+
+
+# 컨테이너가 시작될 때 실행할 명령을 지정합니다.
+CMD ["python3","./l_consumer.py"]

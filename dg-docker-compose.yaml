@@ -1,4 +1,4 @@
-version: '1'
+version: '2'
 services:
   postgres-server:
     image: postgres:14.0
@@ -9,3 +9,52 @@ services:
       POSTGRES_USER: admin  
       POSTGRES_PASSWORD: qwer
       POSTGRES_DB: warehouse
+    networks:
+      - part7-naive_kafka-net 
+  kafka-consumer-weather:
+    build:
+      context: .
+      dockerfile: Dockerfile-W
+    ports:
+      - 7778:7778
+    depends_on:
+      - postgres-server
+    container_name: kafka-weather-consumer 
+    networks:
+      - part7-naive_kafka-net 
+  kafka-consumer-breakfast:
+    build:
+      context: .
+      dockerfile: Dockerfile-B
+    ports:
+      - 7779:7779
+    depends_on:
+      - kafka-consumer-weather
+    container_name: kafka-breakfast-consumer
+    networks:
+      - part7-naive_kafka-net 
+  kafka-consumer-lunch:
+    build:
+      context: .
+      dockerfile: Dockerfile-L
+    ports:
+      - 7780:7780
+    depends_on:
+      - kafka-consumer-weather
+    container_name: kafka-lunch-consumer
+    networks:
+      - part7-naive_kafka-net 
+  kafka-consumer-dinner:
+    build:
+      context: .
+      dockerfile: Dockerfile-D
+    ports:
+      - 7781:7781
+    depends_on:
+      - kafka-consumer-weather
+    container_name: kafka-dinner-consumer
+    networks:
+      - part7-naive_kafka-net 
+networks:
+  part7-naive_kafka-net :
+    external: true

@@ -455,12 +455,18 @@ class DataLoader():
 
 if __name__ == "__main__":
     dl = DataLoader()
-    print(dl.w_df)
-    print(dl.m_b_df)
-    print(dl.m_l_df)
-    print(dl.m_d_df)
-
-    engine, db = dbconnect()
+    # menu = []
+    # # print(dl.w_df)
+    # menu += dl.m_b_df.loc[:, '조식 메뉴1'].to_list()
+    # menu += dl.m_l_df.loc[:, '중식 메뉴1'].to_list()
+    # menu += dl.m_d_df.loc[:, '석식 메뉴1'].to_list()
+    # menu += dl.m_b_df.loc[:, '조식 메뉴2'].to_list()
+    # menu += dl.m_l_df.loc[:, '중식 메뉴2'].to_list()
+    # menu += dl.m_d_df.loc[:, '석식 메뉴2'].to_list()
+    # menu = list(set(menu))
+    # df = pd.DataFrame({"menu": menu}, index=range(len(menu)))
+    # engine, db = dbconnect()
+    # df.to_sql(name='menu', con=engine, if_exists='append', index=False)
     # recolumn
     # col = ['date', 'rainfall', 'avg_rh', 'max_temp',
     #        'min_temp', 'avg_temp', 'di_b', 'di_l', 'di_d']
@@ -469,12 +475,12 @@ if __name__ == "__main__":
     # col = ['date', 'weekday', 'b_diners', 'event', 'menu1', 'menu2']
     # dl.m_b_df.columns = col
     # dl.m_b_df.to_sql(name='breakfast', con=engine,
-    #                  if_exists='append', index=False)
+    #                  if_exists='replace', index=False)
     # col = ['date', 'weekday', 'l_diners', 'event', 'menu1', 'menu2']
     # dl.m_l_df.columns = col
     # dl.m_l_df.to_sql(name='lunch', con=engine,
-    #                  if_exists='append', index=False)
+    #                  if_exists='replace', index=False)
     # col = ['date', 'weekday', 'd_diners', 'event', 'menu1', 'menu2']
     # dl.m_d_df.columns = col
     # dl.m_d_df.to_sql(name='dinner', con=engine,
-    #                  if_exists='append', index=False)
+    #                  if_exists='replace', index=False)

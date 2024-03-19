@@ -75,3 +75,8 @@ https://www.weather.go.kr/plus/life/li_asset//HELP/basic/help_01_05.jsp<br>
 
 SQLAlchemy의 engine을 이용해 DB를 연결하고 Table을 만들고 df.to_sql()을 사용해 DataFrame을 DB에 추가한다.<br>
 ![Alt text](./img/image-2.png)
+
+## Kafka Conumser
+
+-   Kafka의 Consumer를 사용해서 FastAPI에서 UPload한 데이터를 Topic에서 가져와 PostgreSQL로 업데이트
+-   Kafka Consumer는 총 4개로 각각 4개의 Topic을 Listen하고 있음.
